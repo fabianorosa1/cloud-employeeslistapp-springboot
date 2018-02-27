@@ -1,173 +1,163 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<parent>
-		<groupId>com.sap.employeeslist</groupId>
-		<artifactId>employeeslist-parent</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</parent>
+
+	<version>0.0.1-SNAPSHOT</version>
 	<artifactId>employeeslist-java</artifactId>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<properties>
+		<eclipselink.version>2.7.1</eclipselink.version>
+		<spring.cloud>1.5.10.RELEASE</spring.cloud>
+		<!-- Using SAP internal verison for Olingo. This could be replaced with 
+			Olingo global version . -->
+		<olingo.v2.version>2.0.10</olingo.v2.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-		<olingo.version>2.0.7</olingo.version>
-		<slf4j.version>1.7.12</slf4j.version>
-		<eclipselink.version>2.6.5</eclipselink.version>
-		<javax.servlet-api.version>3.0.1</javax.servlet-api.version>
-		<httpclient.version>4.5.2</httpclient.version>
-		<httpcore.version>4.4.5</httpcore.version>
-		<cxf-rt-frontend-jaxrs.version>2.7.18</cxf-rt-frontend-jaxrs.version>
-		<ngdbc.version>2.0.13</ngdbc.version>
-		<commons-dbcp2.version>2.1.1</commons-dbcp2.version>
-		<jackson-databind.version>2.8.7</jackson-databind.version>
+		<maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>1.8</java.version>
+		<spring-cloud.version>Edgware.SR2</spring-cloud.version>		
 	</properties>
+	
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.2.RELEASE</version>
+	</parent>
+	
 	<dependencies>
-		<!-- Apache Tomcat (TomEE)/7.0.68 (1.7.4) -->
 		<dependency>
-			<groupId>org.apache.openejb</groupId>
-			<artifactId>javaee-api</artifactId>
-			<version>6.0-6</version>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+			<version>3.2.2</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>geronimo-javamail_1.4_spec</artifactId>
+					<groupId>org.apache.geronimo.specs</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>olingo-odata2-jpa-processor-api</artifactId>
+			<version>${olingo.v2.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>org.eclipse.persistence</groupId>
+					<artifactId>javax.persistence</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>olingo-odata2-jpa-processor-core</artifactId>
+			<version>${olingo.v2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>olingo-odata2-jpa-processor-ref</artifactId>
+			<version>${olingo.v2.version}</version>
 			<scope>provided</scope>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.module/jackson-module-jaxb-annotations -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.module</groupId>
-			<artifactId>jackson-module-jaxb-annotations</artifactId>
-			<version>2.9.2</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.9.2</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.9.2</version>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.jaxrs/jackson-jaxrs-json-provider -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.jaxrs</groupId>
-			<artifactId>jackson-jaxrs-json-provider</artifactId>
-			<version>2.9.2</version>
-		</dependency>
-
-
-
-		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-simple</artifactId>
-			<version>${slf4j.version}</version>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-			<version>${slf4j.version}</version>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>olingo-odata2-core</artifactId>
+			<version>${olingo.v2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>olingo-odata2-api-annotation</artifactId>
+			<version>${olingo.v2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>
+   			olingo-odata2-annotation-processor-ref
+   		</artifactId>
+			<version>${olingo.v2.version}</version>
+			<scope>provided</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-log4j12</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.olingo</groupId>
+			<artifactId>
+   			olingo-odata2-annotation-processor-core
+   		</artifactId>
+			<version>${olingo.v2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+			</exclusions>
+		</dependency>
+
+		<!-- Spring JPA. Since, we are using eclipse link JPA. We exclude default 
+			hibernate JPA. -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.hibernate</groupId>
+					<artifactId>hibernate-entitymanager</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>eclipselink</artifactId>
 			<version>${eclipselink.version}</version>
 		</dependency>
-
 		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>${javax.servlet-api.version}</version>
-			<scope>provided</scope>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<artifactId>slf4j-api</artifactId>
+					<groupId>org.slf4j</groupId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>joda-time</groupId>
+			<artifactId>joda-time</artifactId>
+			<!-- <version>2.9.9</version> -->
 		</dependency>
 
+		<!-- spring cloud service connector for CF -->
+		<!-- For deployment in cloud foundry -->
 		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpclient</artifactId>
-			<version>${httpclient.version}</version>
-			<scope>compile</scope>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-spring-service-connector</artifactId>
+			<!-- <version>${spring.cloud}</version> -->
 		</dependency>
+		<!-- Cloud foundry connector -->
 		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpcore</artifactId>
-			<version>${httpcore.version}</version>
-			<scope>compile</scope>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-cloudfoundry-connector</artifactId>
+			<!-- <version>${spring.cloud}</version> -->
 		</dependency>
+		<!-- HANA service connector for connecting to HANA Service in SAP CF. -->
 		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
-			<version>${cxf-rt-frontend-jaxrs.version}</version>
-			<scope>provided</scope>
+			<groupId>com.sap.hana.cloud</groupId>
+			<artifactId>spring-cloud-cloudfoundry-hana-service-connector</artifactId>
+			<version>1.0.4.RELEASE</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.olingo</groupId>
-			<artifactId>olingo-odata2-api</artifactId>
-			<version>${olingo.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.olingo</groupId>
-			<artifactId>olingo-odata2-core</artifactId>
-			<version>${olingo.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.olingo</groupId>
-			<artifactId>olingo-odata2-jpa-processor-api</artifactId>
-			<version>${olingo.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.olingo</groupId>
-			<artifactId>olingo-odata2-api-annotation</artifactId>
-			<version>${olingo.version}</version>
-			<scope>compile</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.olingo</groupId>
-			<artifactId>olingo-odata2-jpa-processor-core</artifactId>
-			<version>${olingo.version}</version>
-			<scope>runtime</scope>
-		</dependency>
-		<!-- <dependency> <groupId>com.sap.db.jdbc</groupId> <artifactId>ngdbc</artifactId> 
-			<version>${ngdbc.version}</version> <scope>system</scope> <systemPath>${project.basedir}/src/main/resources/ngdbc.jar</systemPath> 
-			</dependency> -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-dbcp2</artifactId>
-			<version>${commons-dbcp2.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>${jackson-databind.version}</version>
-		</dependency>
-
-		<!-- logging support for cloud foundry -->
-		<dependency>
-			<groupId>com.sap.hcp.cf.logging</groupId>
-			<artifactId>cf-java-logging-support-logback</artifactId>
-			<version>2.0.10</version>
-		</dependency>
-		<dependency>
-			<groupId>com.sap.hcp.cf.logging</groupId>
-			<artifactId>cf-java-logging-support-servlet</artifactId>
-			<version>2.0.10</version>
-		</dependency>
-
 	</dependencies>
-
-
-	<!-- <build> -->
-	<!-- <finalName>employeeslist-java</finalName> -->
-	<!-- <plugins> -->
-	<!-- <plugin> -->
-	<!-- <groupId>org.apache.tomcat.maven</groupId> -->
-	<!-- <artifactId>tomcat7-maven-plugin</artifactId> -->
-	<!-- <version>2.2</version> -->
-	<!-- </plugin> -->
-	<!-- </plugins> -->
-	<!-- </build> -->
+	
 </project>

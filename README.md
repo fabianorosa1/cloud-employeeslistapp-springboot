@@ -17,7 +17,7 @@ https://www.sap.com/developer/tutorials/xsa-hdi-module.html
 # CF commands
 java -jar mta.jar -build-target=CF build
 
-cf deploy cloud-employeeslistapp-tomee.mtar
+cf deploy cloud-employeeslistapp-springboot.mtar
 
 cf allow-space-ssh SPACE_NAME
 cf enable-ssh APP_NAME

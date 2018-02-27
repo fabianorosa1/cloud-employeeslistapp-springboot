@@ -1,4 +1,8 @@
-package com.sap.employeeslist.persistence.model;
+package com.sap.cf.odata.spring.model;
+
+import java.io.Serializable;
+import java.lang.String;
+import javax.persistence.*;
 
 import java.io.Serializable;
 import javax.persistence.*;
