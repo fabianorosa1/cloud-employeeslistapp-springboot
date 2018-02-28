@@ -10,7 +10,7 @@ modules:
 #     - name: hanadb-hdi-container
            
  - name: employeeslist-java
-   type: java
+   type: java.tomcat
    path: java
    build-parameters:
      ignore: [ pom.xml, target/, node/]

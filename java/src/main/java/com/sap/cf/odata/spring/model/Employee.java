@@ -1,11 +1,20 @@
 package com.sap.cf.odata.spring.model;
 
 import java.io.Serializable;
-import java.lang.String;
-import javax.persistence.*;
 
-import java.io.Serializable;
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+/**
+ * 
+ * @author fabiano.rosa
+ *
+ */
 
 @Entity
 @Table(name = "\"MainEntities.Employee\"")
@@ -16,7 +25,7 @@ public class Employee implements Serializable {
 	@SequenceGenerator(name="Employee_GENERATOR", sequenceName="\"employeeSeqId\"", allocationSize=1)
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="Employee_GENERATOR")
 	@Column(name = "\"id\"")
-	private int id;
+	private Integer id;
 
 	@Column(name = "\"firstName\"", length = 100)
 	private String firstName;
@@ -27,11 +36,11 @@ public class Employee implements Serializable {
 	public Employee() {
 	}
 
-	public void setId(int id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 

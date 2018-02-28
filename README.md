@@ -7,6 +7,8 @@ https://p1943057769trial-trial-dev-employeeslist-ui.cfapps.eu10.hana.ondemand.co
 https://p1943057769trial-trial-dev-employeeslist-java.cfapps.eu10.hana.ondemand.com/core/employees
 https://p1943057769trial-trial-dev-employeeslist-java.cfapps.eu10.hana.ondemand.com/core/test
 
+https://s0017254285trial-trial-dev-employeeslist-java.cfapps.eu10.hana.ondemand.com/employeeslist.svc/employees
+
 # Blogs and tutorials about this scenario
 https://blogs.sap.com/2015/12/08/sap-hana-sps-11-new-developer-features-hdi/
 
@@ -56,3 +58,6 @@ C:\Users\fabiano.a.rosa>cf curl /v2/info
 ssh -p 2222 cf:f3:12:47:b5:3a:19:6e:6c:4e:9d:90:2e:6f:8e:87:cc/0@ssh.cf.eu10.hana.ondemand.com
 
 
+mvn install:install-file -Dfile=ngdbc.jar -DgroupId=com.sap.db.jdbc -DartifactId=ngdbc -Dversion=2.0.14 -Dpackaging=jar
+ 
+ 

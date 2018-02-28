@@ -6,9 +6,18 @@
 	<artifactId>employeeslist-java</artifactId>
 	<packaging>jar</packaging>
 
+	<name>employeeslist-java</name>
+	<description>Demo project for Spring Boot</description>
+
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>1.5.10.RELEASE</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+
 	<properties>
 		<eclipselink.version>2.7.1</eclipselink.version>
-		<spring.cloud>1.5.10.RELEASE</spring.cloud>
 		<!-- Using SAP internal verison for Olingo. This could be replaced with 
 			Olingo global version . -->
 		<olingo.v2.version>2.0.10</olingo.v2.version>
@@ -18,92 +27,49 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
-		<spring-cloud.version>Edgware.SR2</spring-cloud.version>		
+		<spring-cloud-services.version>1.6.1.RELEASE</spring-cloud-services.version>
+		<spring-cloud.version>Edgware.SR2</spring-cloud.version>
 	</properties>
-	
-	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.2.RELEASE</version>
-	</parent>
-	
-	<dependencies>
+
+
+	<dependencies>		
+
+		<!-- spring cloud service connector for CF -->
+		<!-- For deployment in cloud foundry -->
 		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
-			<version>3.2.2</version>
-			<exclusions>
-				<exclusion>
-					<artifactId>geronimo-javamail_1.4_spec</artifactId>
-					<groupId>org.apache.geronimo.specs</groupId>
-				</exclusion>
-			</exclusions>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-spring-service-connector</artifactId>
+			<!-- <version>${spring.cloud}</version> -->
 		</dependency>
+
+		<!-- Cloud foundry connector -->
 		<dependency>
-			<groupId>org.apache.olingo</groupId>
-			<artifactId>olingo-odata2-jpa-processor-api</artifactId>
-			<version>${olingo.v2.version}</version>
-			<exclusions>
-				<exclusion>
-					<groupId>org.eclipse.persistence</groupId>
-					<artifactId>javax.persistence</artifactId>
-				</exclusion>
-			</exclusions>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-cloudfoundry-connector</artifactId>
+			<!-- <version>${spring.cloud}</version> -->
 		</dependency>
+
+		<!-- HANA service connector for connecting to HANA Service in SAP CF. -->
 		<dependency>
-			<groupId>org.apache.olingo</groupId>
-			<artifactId>olingo-odata2-jpa-processor-core</artifactId>
-			<version>${olingo.v2.version}</version>
+			<groupId>com.sap.hana.cloud</groupId>
+			<artifactId>spring-cloud-cloudfoundry-hana-service-connector</artifactId>
+			<version>1.0.4.RELEASE</version>
 		</dependency>
+
+		<!-- Logging Support for Cloud Foundry -->
 		<dependency>
-			<groupId>org.apache.olingo</groupId>
-			<artifactId>olingo-odata2-jpa-processor-ref</artifactId>
-			<version>${olingo.v2.version}</version>
-			<scope>provided</scope>
-			<exclusions>
-				<exclusion>
-					<artifactId>slf4j-api</artifactId>
-					<groupId>org.slf4j</groupId>
-				</exclusion>
-			</exclusions>
+			<groupId>com.sap.hcp.cf.logging</groupId>
+			<artifactId>cf-java-logging-support-logback</artifactId>
+			<version>2.0.10</version>
 		</dependency>
+		
 		<dependency>
-			<groupId>org.apache.olingo</groupId>
-			<artifactId>olingo-odata2-core</artifactId>
-			<version>${olingo.v2.version}</version>
+			<groupId>com.sap.hcp.cf.logging</groupId>
+			<artifactId>cf-java-logging-support-servlet</artifactId>
+			<version>2.0.10</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.olingo</groupId>
-			<artifactId>olingo-odata2-api-annotation</artifactId>
-			<version>${olingo.v2.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.olingo</groupId>
-			<artifactId>
-   			olingo-odata2-annotation-processor-ref
-   		</artifactId>
-			<version>${olingo.v2.version}</version>
-			<scope>provided</scope>
-			<exclusions>
-				<exclusion>
-					<artifactId>slf4j-log4j12</artifactId>
-					<groupId>org.slf4j</groupId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.olingo</groupId>
-			<artifactId>
-   			olingo-odata2-annotation-processor-core
-   		</artifactId>
-			<version>${olingo.v2.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<exclusions>
-			</exclusions>
-		</dependency>
+
+		<!-- Security -->
 
 		<!-- Spring JPA. Since, we are using eclipse link JPA. We exclude default 
 			hibernate JPA. -->
@@ -117,11 +83,20 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+			<exclusions>
+			</exclusions>
+		</dependency>
+
 		<dependency>
 			<groupId>org.eclipse.persistence</groupId>
 			<artifactId>eclipselink</artifactId>
 			<version>${eclipselink.version}</version>
 		</dependency>
+
 		<dependency>
 			<groupId>com.jayway.jsonpath</groupId>
 			<artifactId>json-path</artifactId>
@@ -133,31 +108,46 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
 			<!-- <version>2.9.9</version> -->
 		</dependency>
 
-		<!-- spring cloud service connector for CF -->
-		<!-- For deployment in cloud foundry -->
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-spring-service-connector</artifactId>
-			<!-- <version>${spring.cloud}</version> -->
+			<groupId>com.sap.db.jdbc</groupId>
+			<artifactId>ngdbc</artifactId>
+			<version>2.0.14</version>		
 		</dependency>
-		<!-- Cloud foundry connector -->
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-cloudfoundry-connector</artifactId>
-			<!-- <version>${spring.cloud}</version> -->
-		</dependency>
-		<!-- HANA service connector for connecting to HANA Service in SAP CF. -->
-		<dependency>
-			<groupId>com.sap.hana.cloud</groupId>
-			<artifactId>spring-cloud-cloudfoundry-hana-service-connector</artifactId>
-			<version>1.0.4.RELEASE</version>
-		</dependency>
+
 	</dependencies>
-	
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
+				<groupId>io.pivotal.spring.cloud</groupId>
+				<artifactId>spring-cloud-services-dependencies</artifactId>
+				<version>${spring-cloud-services.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
 </project>
