@@ -13,7 +13,7 @@ import com.sap.cf.odata.spring.model.Employee;
  *
  */
 @Repository
-public interface EmployeeRepository extends CrudRepository <Employee, Integer>{
+public interface EmployeeRepository extends CrudRepository<Employee, Integer>{
 
 	public List<Employee> findAllByFirstName(String firstName);
 	

@@ -3,32 +3,32 @@ ID: com.sap.cloud.sample.employeeslist
 version: 1.3.10
 
 modules:            
-# - name: employeeslist-db
-#   type: hdb
-#   path: db
-#   requires:
-#     - name: hanadb-hdi-container
-           
- - name: employeeslist-java
-   type: java.tomcat
-   path: java
-   build-parameters:
-     ignore: [ pom.xml, target/, node/]
-     builder: maven
-     buildpack: java_buildpack
-     maven-opts:
-        command: [ clean, verify ]
-   parameters:
-      memory: 768M
-   provides:
-    - name: employeeslist-service
-      properties:
-        url: "${default-url}" 
-   properties:
-         SAP_JWT_TRUST_ACL: '[{"clientid" : "*", "identityzone" : "*"}]'
-         SPRING_PROFILES_DEFAULT: cloud        
+ - name: employeeslist-db
+   type: hdb
+   path: db
    requires:
-    - name: hanadb-hdi-container
+     - name: hanadb-hdi-container
+           
+# - name: employeeslist-java
+#   type: java.tomcat
+#   path: java
+#   build-parameters:
+#     ignore: [ pom.xml, target/, node/]
+#     builder: maven
+#     buildpack: java_buildpack
+#     maven-opts:
+#        command: [ clean, verify ]
+#   parameters:
+#      memory: 768M
+#   provides:
+#    - name: employeeslist-service
+#      properties:
+#        url: "${default-url}" 
+#   properties:
+#         SAP_JWT_TRUST_ACL: '[{"clientid" : "*", "identityzone" : "*"}]'
+#         SPRING_PROFILES_DEFAULT: cloud        
+#   requires:
+#    - name: hanadb-hdi-container
 
            
 # - name: employeeslist-ui
@@ -54,6 +54,6 @@ resources:
       hdi-container-name: ${service-name}
    parameters:
       config:
-         schema: employeeslist     
+         schema: employees 
       
  

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<data-sources>
+	<data-source id="sap_hana-161deacf70d-3bcc9a76a20fc18" provider="generic" driver="sap_hana" name="SAP - localhost" save-password="true" show-system-objects="true" read-only="false">
+		<connection host="localhost" port="30015" server="" database="" url="jdbc:sap://localhost:30015" user="SBSS_46216067278925265280179678921115923225044271050225440098139022589" password="PAVQeXtofgQ8Ow5uIhEIeD40B2BSZVF0EgtDMhdVIiAcSyIARkQZF2YOZRQwQwECDmVxEwxUFywZHkdkcCBPE2hWSnwhDQAfFTcoIVcnKSYDVQYhEDknRxEpRC0JdhARVAIKIzw1PzJdXXdGSBxQcG4uPwgTSDddCSkoLSRQfXNzpQ==" type="dev">
+			<network-handler type="TUNNEL" id="ssh_tunnel" enabled="false" save-password="false">
+				<property name="sshConnectTimeout" value="10000"/>
+				<property name="port" value="22"/>
+				<property name="authType" value="PASSWORD"/>
+			</network-handler>
+			<network-handler type="PROXY" id="socks_proxy" enabled="false" save-password="false">
+				<property name="socks-port" value="1080"/>
+			</network-handler>
+		</connection>
+	</data-source>
+	<filters/>
+</data-sources>

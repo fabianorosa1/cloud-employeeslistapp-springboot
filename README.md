@@ -5,6 +5,7 @@
 https://p1943057769trial-trial-dev-employeeslist-ui.cfapps.eu10.hana.ondemand.com/index.html
 
 https://p1943057769trial-trial-dev-employeeslist-java.cfapps.eu10.hana.ondemand.com/core/employees
+
 https://p1943057769trial-trial-dev-employeeslist-java.cfapps.eu10.hana.ondemand.com/core/test
 
 https://s0017254285trial-trial-dev-employeeslist-java.cfapps.eu10.hana.ondemand.com/employeeslist.svc/employees
@@ -16,27 +17,35 @@ https://help.sap.com/doc/4505d0bdaf4948449b7f7379d24d0f0d/2.0.01/en-US/b3092cdd8
 
 https://www.sap.com/developer/tutorials/xsa-hdi-module.html
 
+npm config set @sap:registry https://npm.sap.com
+
 # CF commands
 java -jar mta.jar -build-target=CF build
 
 cf deploy cloud-employeeslistapp-springboot.mtar
 
 cf allow-space-ssh SPACE_NAME
+
 cf enable-ssh APP_NAME
 
 cf security-groups
+
 cf security-group SECURITY_GROUP
 
 cf ssh -L localhost:30015:<host>:<port> <application_name> -N
 
 cf m  
+
 cf cs application-logs lite app-logs  
+
 cf bs employeeslist-java app-logs 
+
 cf restage employeeslist-java
 
 https://docs.cloudfoundry.org/devguide/deploy-apps/ssh-apps.html
 
 C:\Users\fabiano.a.rosa>cf curl /v2/info
+
 {
    "name": "",
    "build": "",
@@ -56,7 +65,6 @@ C:\Users\fabiano.a.rosa>cf curl /v2/info
 
 
 ssh -p 2222 cf:f3:12:47:b5:3a:19:6e:6c:4e:9d:90:2e:6f:8e:87:cc/0@ssh.cf.eu10.hana.ondemand.com
-
 
 mvn install:install-file -Dfile=ngdbc.jar -DgroupId=com.sap.db.jdbc -DartifactId=ngdbc -Dversion=2.0.14 -Dpackaging=jar
  

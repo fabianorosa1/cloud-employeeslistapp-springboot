@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.sap.cf.odata.spring.model.Employee;
 import com.sap.cf.odata.spring.repository.EmployeeRepository;
@@ -42,10 +43,14 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	}
 
 	@Override
+	@Transactional
 	public Employee create(Employee employee) {
 		logger.info(">>> create: " + employee);		
 		
-		return this.employeeRepository.save(employee);		
+		Employee emp = this.employeeRepository.save(employee);
+		//this.employeeRepository.flush();
+		
+		return emp;		
 	}
 
 	@Override
