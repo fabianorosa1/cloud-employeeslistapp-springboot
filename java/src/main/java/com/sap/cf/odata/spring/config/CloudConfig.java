@@ -8,6 +8,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.cloud.Cloud;
 import org.springframework.cloud.CloudFactory;
 import org.springframework.cloud.config.java.AbstractCloudConfig;
+import org.springframework.cloud.service.PooledServiceConnectorConfig.PoolConfig;
+import org.springframework.cloud.service.relational.DataSourceConfig;
+import org.springframework.cloud.service.relational.DataSourceConfig.ConnectionConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -22,8 +25,8 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * 
  * @author fabiano.rosa
  *
- * https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
- * http://www.baeldung.com/spring-eclipselink
+ *         https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+ *         http://www.baeldung.com/spring-eclipselink
  *
  */
 
@@ -35,6 +38,11 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 public class CloudConfig extends AbstractCloudConfig {
 	private static final String HANA_SVC = "hanadb-hdi-container";
 	private static final Logger logger = LoggerFactory.getLogger(CloudConfig.class);
+
+	private static final int MIN_POOL_SIZE = 100;
+	private static final int MAX_POOL_SIZE = 200;
+	private static final int MAX_WAIT_TIME = 5;
+	//private static final String CONNECTION_PROPERTIES_STRING = "useUnicode=true;characterEncoding=UTF-8";
 
 	/**
 	 * Create dataSource bean from SAP CF
@@ -48,9 +56,14 @@ public class CloudConfig extends AbstractCloudConfig {
 		CloudFactory cloudFactory = new CloudFactory();
 		Cloud cloud = cloudFactory.getCloud();
 
-		DataSource ds = cloud.getServiceConnector(HANA_SVC, DataSource.class, null);
+		PoolConfig poolConfig = new PoolConfig(MIN_POOL_SIZE, MAX_POOL_SIZE, MAX_WAIT_TIME);
+		ConnectionConfig connectionConfig = new ConnectionConfig(null);
+		DataSourceConfig config = new DataSourceConfig(poolConfig, connectionConfig);
+
+		DataSource ds = cloud.getServiceConnector(HANA_SVC, DataSource.class, config);
+
 		logger.info(">>>DataSource: " + ds);
-		
+
 		return ds;
 	}
 
@@ -65,27 +78,27 @@ public class CloudConfig extends AbstractCloudConfig {
 		logger.info(">>>Enter entityManagerFactory!!!!!");
 
 		LocalContainerEntityManagerFactoryBean springEMF = new LocalContainerEntityManagerFactoryBean();
-		//springEMF.setJpaVendorAdapter(new EclipseLinkJpaVendorAdapter());
-		
+		// springEMF.setJpaVendorAdapter(new EclipseLinkJpaVendorAdapter());
+
 		DataSource ds = dataSource();
-		logger.info(">>>DataSource: " + ds);
+		logger.debug(">>>DataSource: " + ds);
 		springEMF.setDataSource(ds);
-		
+
 		springEMF.setPersistenceUnitName("pu-cf");
 		springEMF.afterPropertiesSet();
 
 		return springEMF.getObject();
 	}
-	
+
 	@Bean
-    public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
+	public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
 		logger.info(">>>Enter transactionManager!!!!!");
-		
-        final JpaTransactionManager transactionManager = new JpaTransactionManager();
-        
-        transactionManager.setEntityManagerFactory(emf);
-        logger.info(">>>transactionManager: " + transactionManager);
-        
-        return transactionManager;
-    }
+
+		final JpaTransactionManager transactionManager = new JpaTransactionManager();
+
+		transactionManager.setEntityManagerFactory(emf);
+		logger.debug(">>>transactionManager: " + transactionManager);
+
+		return transactionManager;
+	}
 }

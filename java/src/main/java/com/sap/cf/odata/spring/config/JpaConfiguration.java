@@ -30,14 +30,14 @@ public class JpaConfiguration extends JpaBaseConfiguration {
 	
     protected JpaConfiguration(DataSource dataSource, JpaProperties properties, ObjectProvider<JtaTransactionManager> jtaTransactionManager, ObjectProvider<TransactionManagerCustomizers> transactionManagerCustomizers) {
         super(dataSource, properties, jtaTransactionManager, transactionManagerCustomizers);
-        logger.info(">>>Enter JpaConfiguration dataSource: " + dataSource);
-        logger.info(">>>Enter JpaConfiguration properties: " + properties);
-        logger.info(">>>Enter JpaConfiguration jtaTransactionManager: " + jtaTransactionManager);
+        logger.debug(">>>Enter JpaConfiguration dataSource: " + dataSource);
+        logger.debug(">>>Enter JpaConfiguration properties: " + properties);
+        logger.debug(">>>Enter JpaConfiguration jtaTransactionManager: " + jtaTransactionManager);
     }
 
     @Override
     protected AbstractJpaVendorAdapter createJpaVendorAdapter() {
-    	logger.info(">>>Enter createJpaVendorAdapter!!!!!");
+    	logger.debug(">>>Enter createJpaVendorAdapter!!!!!");
         return new EclipseLinkJpaVendorAdapter();
     }
 
@@ -47,7 +47,7 @@ public class JpaConfiguration extends JpaBaseConfiguration {
         map.put(PersistenceUnitProperties.WEAVING, detectWeavingMode());
         //map.put(PersistenceUnitProperties.DDL_GENERATION, "drop-and-create-tables");
         
-        logger.info(">>>Enter createJpaVendorAdapter: " + map);
+        logger.debug(">>>Enter createJpaVendorAdapter: " + map);
         
         return map;
     }
