@@ -2,6 +2,9 @@ package com.sap.cf.odata.spring.service;
 
 import java.util.List;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,9 @@ import com.sap.cf.odata.spring.repository.EmployeeRepository;
 public class EmployeeServiceImpl implements IEmployeeService {
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeServiceImpl.class);
 	
+	 @PersistenceContext
+	 EntityManager em;
+	 
 	@Autowired
 	private EmployeeRepository employeeRepository;		
 
@@ -46,6 +52,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
 	@Transactional
 	public Employee create(Employee employee) {
 		logger.info(">>> create: " + employee);		
+		logger.info(">>> EntityManager: " + this.em);		
 		
 		Employee emp = this.employeeRepository.save(employee);
 		//this.employeeRepository.flush();
