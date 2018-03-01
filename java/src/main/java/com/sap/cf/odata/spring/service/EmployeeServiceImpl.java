@@ -23,51 +23,51 @@ import com.sap.cf.odata.spring.repository.EmployeeRepository;
 @Service
 public class EmployeeServiceImpl implements IEmployeeService {
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeServiceImpl.class);
-	
-	 @PersistenceContext
-	 EntityManager em;
-	 
+
+	@PersistenceContext
+	EntityManager em;
+
 	@Autowired
-	private EmployeeRepository employeeRepository;		
+	private EmployeeRepository employeeRepository;
 
 	@Override
 	public List<Employee> findAllByFirstName(String firstName) {
-		logger.info(">>> findAllByFirstName");		
-		
+		logger.info(">>> findAllByFirstName");
+
 		List<Employee> employees = (List<Employee>) employeeRepository.findAll();
 		return employees;
 	}
 
 	@Override
 	public Employee findOneById(Integer id) {
-		logger.info(">>> findOneById: " + id);		
-		
-		Employee employee = this.employeeRepository.findOne(id);	
+		logger.info(">>> findOneById: " + id);
+
+		Employee employee = this.employeeRepository.findOne(id);
 		logger.info(">>> employee: " + employee);
-		
-		return employee;		
+
+		return employee;
 	}
 
 	@Override
 	@Transactional
 	public Employee create(Employee employee) {
-		logger.info(">>> create: " + employee);		
-		logger.info(">>> EntityManager: " + this.em);		
-		
+		logger.info(">>> create: " + employee);
+		logger.info(">>> EntityManager: " + this.em);
+
 		Employee emp = this.employeeRepository.save(employee);
-		//this.employeeRepository.flush();
-		
-		return emp;		
+		// this.employeeRepository.flush();
+
+		return emp;
 	}
 
 	@Override
-	public List<Employee> findAll() {		
-		logger.info(">>> findAll");		
-		
+	public List<Employee> findAll() {
+		logger.info(">>> findAll");
+
 		List<Employee> employees = (List<Employee>) employeeRepository.findAll();
-		logger.info(">>> employees: " + employees);		
-		
+		logger.info(">>> employees: " + employees);
+
 		return employees;
 	}
-	
+
 }

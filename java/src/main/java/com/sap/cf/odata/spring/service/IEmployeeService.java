@@ -15,11 +15,11 @@ import com.sap.cf.odata.spring.model.Employee;
 public interface IEmployeeService {
 
 	public List<Employee> findAllByFirstName(String firstName);
-	
+
 	public List<Employee> findAll();
-	
+
 	public Employee findOneById(Integer id);
-	
+
 	@Transactional
-	public Employee create (Employee employee);
+	public Employee create(Employee employee);
 }

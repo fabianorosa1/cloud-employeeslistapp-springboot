@@ -6,6 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.context.annotation.ComponentScan;
 
 import com.sap.cf.odata.spring.config.CloudConfig;
 
@@ -14,15 +15,15 @@ import com.sap.cf.odata.spring.config.CloudConfig;
  * @author fabiano.rosa
  *
  */
-@SpringBootApplication(scanBasePackages = {"com.sap.cf.odata.spring"})
+@SpringBootApplication
+@ComponentScan(basePackages={"com.sap.cf.odata.spring"})
 public class AppController extends SpringBootServletInitializer {
 	private static final Logger logger = LoggerFactory.getLogger(AppController.class);
 	
 	// Main method gives control to Spring by invoking run on Spring Application.
 	// This enables Spring to Bootstrap the application
 	public static void main(String[] args) {
-		logger.info(">>>Enter main!!!!!");
-		
+		logger.info(">>>Enter main!!!!!");		
 		SpringApplication.run(AppController.class, args);
 
 	}
@@ -30,8 +31,7 @@ public class AppController extends SpringBootServletInitializer {
 	// This method adds Configuration class for Spring Application Context builder
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-		logger.info(">>>Enter configure!!!!!");
-		
+		logger.info(">>>Enter configure!!!!!");		
 		return builder.sources(AppController.class, CloudConfig.class);
 	}
 }

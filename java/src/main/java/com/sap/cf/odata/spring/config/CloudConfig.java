@@ -12,12 +12,9 @@ import org.springframework.cloud.service.PooledServiceConnectorConfig.PoolConfig
 import org.springframework.cloud.service.relational.DataSourceConfig;
 import org.springframework.cloud.service.relational.DataSourceConfig.ConnectionConfig;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -32,17 +29,17 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @Configuration
 @Profile("cloud")
-@ComponentScan(basePackages = "com.sap.cf")
-@EnableJpaRepositories(basePackages = "com.sap.cf.odata.spring.repository", entityManagerFactoryRef = "entityManagerFactory")
 @EnableTransactionManagement
 public class CloudConfig extends AbstractCloudConfig {
 	private static final String HANA_SVC = "hanadb-hdi-container";
 	private static final Logger logger = LoggerFactory.getLogger(CloudConfig.class);
 
+	// TODO read the Pool configuration from a Properties
 	private static final int MIN_POOL_SIZE = 100;
 	private static final int MAX_POOL_SIZE = 200;
 	private static final int MAX_WAIT_TIME = 5;
-	//private static final String CONNECTION_PROPERTIES_STRING = "useUnicode=true;characterEncoding=UTF-8";
+	// private static final String CONNECTION_PROPERTIES_STRING =
+	// "useUnicode=true;characterEncoding=UTF-8";
 
 	/**
 	 * Create dataSource bean from SAP CF
@@ -56,6 +53,7 @@ public class CloudConfig extends AbstractCloudConfig {
 		CloudFactory cloudFactory = new CloudFactory();
 		Cloud cloud = cloudFactory.getCloud();
 
+		// DataSource Pool configuration
 		PoolConfig poolConfig = new PoolConfig(MIN_POOL_SIZE, MAX_POOL_SIZE, MAX_WAIT_TIME);
 		ConnectionConfig connectionConfig = new ConnectionConfig(null);
 		DataSourceConfig config = new DataSourceConfig(poolConfig, connectionConfig);
@@ -67,32 +65,9 @@ public class CloudConfig extends AbstractCloudConfig {
 		return ds;
 	}
 
-	/**
-	 * Create Eclipselink EMF from the dataSource bean. JPAvendor and datasource
-	 * will be set here. rest will be taken from persistence.xml
-	 * 
-	 * @return EntityManagerFactory
-	 */
-	@Bean(name = "entityManagerFactory")
-	public EntityManagerFactory entityManagerFactory() {
-		logger.info(">>>Enter entityManagerFactory!!!!!");
-
-		LocalContainerEntityManagerFactoryBean springEMF = new LocalContainerEntityManagerFactoryBean();
-		// springEMF.setJpaVendorAdapter(new EclipseLinkJpaVendorAdapter());
-
-		DataSource ds = dataSource();
-		logger.debug(">>>DataSource: " + ds);
-		springEMF.setDataSource(ds);
-
-		springEMF.setPersistenceUnitName("pu-cf");
-		springEMF.afterPropertiesSet();
-
-		return springEMF.getObject();
-	}
-
 	@Bean
 	public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
-		logger.info(">>>Enter transactionManager!!!!!");
+		logger.info(">>>Enter transactionManager!!!!!: " + emf);
 
 		final JpaTransactionManager transactionManager = new JpaTransactionManager();
 
