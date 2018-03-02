@@ -1,4 +1,4 @@
-package com.sap.cf.odata.spring.util;
+package com.sap.cf.springboot.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

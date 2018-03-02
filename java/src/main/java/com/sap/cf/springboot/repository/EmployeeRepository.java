@@ -1,11 +1,11 @@
-package com.sap.cf.odata.spring.repository;
+package com.sap.cf.springboot.repository;
 
 import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.sap.cf.odata.spring.model.Employee;
+import com.sap.cf.springboot.model.Employee;
 
 /**
  * 

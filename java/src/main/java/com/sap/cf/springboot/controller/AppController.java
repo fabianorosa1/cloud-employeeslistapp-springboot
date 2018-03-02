@@ -1,4 +1,4 @@
-package com.sap.cf.odata.spring.controller;
+package com.sap.cf.springboot.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -8,7 +8,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 
-import com.sap.cf.odata.spring.config.CloudConfig;
+import com.sap.cf.springboot.config.CloudConfig;
 
 /**
  * 
@@ -16,7 +16,7 @@ import com.sap.cf.odata.spring.config.CloudConfig;
  *
  */
 @SpringBootApplication
-@ComponentScan(basePackages={"com.sap.cf.odata.spring"})
+@ComponentScan(basePackages={"com.sap.cf.springboot"})
 public class AppController extends SpringBootServletInitializer {
 	private static final Logger logger = LoggerFactory.getLogger(AppController.class);
 	

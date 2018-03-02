@@ -1,4 +1,4 @@
-package com.sap.cf.odata.spring.controller;
+package com.sap.cf.springboot.controller;
 
 import java.util.List;
 
@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sap.cf.odata.spring.model.Employee;
-import com.sap.cf.odata.spring.service.IEmployeeService;
+import com.sap.cf.springboot.model.Employee;
+import com.sap.cf.springboot.service.IEmployeeService;
 
 /**
  * 

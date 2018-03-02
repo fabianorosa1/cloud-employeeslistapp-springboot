@@ -1,4 +1,4 @@
-package com.sap.cf.odata.spring.config;
+package com.sap.cf.springboot.config;
 
 import javax.servlet.Filter;
 

@@ -1,4 +1,4 @@
-package com.sap.cf.odata.spring.config;
+package com.sap.cf.springboot.config;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -29,8 +29,8 @@ import org.springframework.transaction.jta.JtaTransactionManager;
  * 
  */
 @Configuration
-@EnableJpaRepositories(basePackages="com.sap.cf.odata.spring.repository")
-@EntityScan(basePackages="com.sap.cf.odata.spring.model")
+@EnableJpaRepositories(basePackages="com.sap.cf.springboot.repository")
+@EntityScan(basePackages="com.sap.cf.springboot.model")
 public class JpaConfiguration extends JpaBaseConfiguration {
 	private static final Logger logger = LoggerFactory.getLogger(JpaConfiguration.class);
 	
@@ -45,14 +45,14 @@ public class JpaConfiguration extends JpaBaseConfiguration {
 
     @Override
     protected AbstractJpaVendorAdapter createJpaVendorAdapter() {
-    	logger.debug(">>>Enter createJpaVendorAdapter!!!!!");
+    	logger.info(">>>Enter createJpaVendorAdapter!!!!!");
         return new EclipseLinkJpaVendorAdapter();
     }        
 
     @Override
 	protected String[] getPackagesToScan() {
 		String[] packages = super.getPackagesToScan();		
-		logger.debug("$$$$$ getPackagesToScan: " + Arrays.toString(packages));		
+		logger.info("$$$$$ getPackagesToScan: " + Arrays.toString(packages));		
 		return packages;
 	}
 
@@ -86,7 +86,7 @@ public class JpaConfiguration extends JpaBaseConfiguration {
         HashMap<String, Object> map = new HashMap<>();
         map.put(PersistenceUnitProperties.WEAVING, detectWeavingMode());
         //map.put(PersistenceUnitProperties.DDL_GENERATION, "drop-and-create-tables");
-        map.put(PersistenceUnitProperties.LOGGING_LEVEL, SessionLog.FINE_LABEL);
+        map.put(PersistenceUnitProperties.LOGGING_LEVEL, SessionLog.INFO_LABEL);
         map.put(PersistenceUnitProperties.TARGET_DATABASE, "HANA");
         map.put(PersistenceUnitProperties.CACHE_STATEMENTS, "true");
         

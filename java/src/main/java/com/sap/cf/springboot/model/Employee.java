@@ -1,4 +1,4 @@
-package com.sap.cf.odata.spring.model;
+package com.sap.cf.springboot.model;
 
 import java.io.Serializable;
 

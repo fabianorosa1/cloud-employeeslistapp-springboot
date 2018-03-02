@@ -1,4 +1,4 @@
-package com.sap.cf.odata.spring.config;
+package com.sap.cf.springboot.config;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
@@ -35,8 +35,8 @@ public class CloudConfig extends AbstractCloudConfig {
 	private static final Logger logger = LoggerFactory.getLogger(CloudConfig.class);
 
 	// TODO read the Pool configuration from a Properties
-	private static final int MIN_POOL_SIZE = 100;
-	private static final int MAX_POOL_SIZE = 200;
+	private static final int MIN_POOL_SIZE = 2;
+	private static final int MAX_POOL_SIZE = 10;
 	private static final int MAX_WAIT_TIME = 5;
 	// private static final String CONNECTION_PROPERTIES_STRING =
 	// "useUnicode=true;characterEncoding=UTF-8";

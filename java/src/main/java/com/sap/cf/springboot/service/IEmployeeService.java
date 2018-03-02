@@ -1,10 +1,10 @@
-package com.sap.cf.odata.spring.service;
+package com.sap.cf.springboot.service;
 
 import java.util.List;
 
 import org.springframework.transaction.annotation.Transactional;
 
-import com.sap.cf.odata.spring.model.Employee;
+import com.sap.cf.springboot.model.Employee;
 
 /**
  * 
