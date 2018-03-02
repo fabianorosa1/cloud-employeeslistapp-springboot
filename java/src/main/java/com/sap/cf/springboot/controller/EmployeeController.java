@@ -27,12 +27,12 @@ public class EmployeeController {
 	@Autowired
 	private IEmployeeService employeeService;
 
-	@GetMapping("/home")
+	@GetMapping("/")
 	@ResponseBody
 	public String getHome() {
 		logger.info(">>> GET Home - SERVICE");		
 		
-		return "Works";
+		return "SpringBoot Employee List - Home Works !!!!";
 	}
 	
 	@GetMapping("/create")

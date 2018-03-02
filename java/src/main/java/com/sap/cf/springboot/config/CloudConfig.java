@@ -13,6 +13,7 @@ import org.springframework.cloud.service.relational.DataSourceConfig;
 import org.springframework.cloud.service.relational.DataSourceConfig.ConnectionConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.ImportResource;
 import org.springframework.context.annotation.Profile;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -22,14 +23,15 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * 
  * @author fabiano.rosa
  *
- *         https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
- *         http://www.baeldung.com/spring-eclipselink
+ * https://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+ * http://www.baeldung.com/spring-eclipselink
  *
  */
 
 @Configuration
 @Profile("cloud")
 @EnableTransactionManagement
+@ImportResource("classpath:/spring/spring-security.xml")
 public class CloudConfig extends AbstractCloudConfig {
 	private static final String HANA_SVC = "hanadb-hdi-container";
 	private static final Logger logger = LoggerFactory.getLogger(CloudConfig.class);

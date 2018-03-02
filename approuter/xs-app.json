@@ -1,0 +1,8 @@
+{
+  "welcomeFile": "home",
+  "routes": [{
+    "source": "/",
+    "target": "/",
+    "destination": "app-destination"
+  }]
+}

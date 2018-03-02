@@ -2,13 +2,15 @@ _schema-version: "2.0"
 ID: com.sap.cloud.sample.employeeslist
 version: 1.3.10
 
-modules:            
- - name: employeeslist-db
-   type: hdb
-   path: db
-   requires:
-     - name: hanadb-hdi-container
+modules: 
            
+# - name: employeeslist-db
+#   type: hdb
+#   path: db
+#   requires:
+#     - name: hanadb-hdi-container
+
+
 # - name: employeeslist-java
 #   type: java.tomcat
 #   path: java
@@ -46,14 +48,31 @@ modules:
 #      properties:
 #        name: employeesService
 #        url: ~{url}
-        
-resources:
- - name: hanadb-hdi-container
-   type: com.sap.xs.hdi-container
-   properties:
-      hdi-container-name: ${service-name}
+   
+ - name: approuter
+   type: javascript.nodejs
+   path: approuter
    parameters:
-      config:
-         schema: employees 
-      
+     host: approuter-springboot
+     memory: 128M
+   requires:
+    - name: xsuaa-springboot
+      properties:
+         TENANT_HOST_PATTERN: 'approuter-springboot(.*).cfapps.eu10.hana.ondemand.com'
+         destinations: '[{"name":"app-destination", "url" :"https://employeeslist-java.cfapps.eu10.hana.ondemand.com", "forwardAuthToken": true}]'
+         
+resources:
+# - name: hanadb-hdi-container
+#   type: com.sap.xs.hdi-container
+#   properties:
+#      hdi-container-name: ${service-name}
+#   parameters:
+#      config:
+#         schema: employees 
+# - name: app-logs
+#   type: application-logs
+#   parameters:
+#     service-plan: lite
+ - name: xsuaa-springboot
+   type: com.sap.xs.uaa      
  

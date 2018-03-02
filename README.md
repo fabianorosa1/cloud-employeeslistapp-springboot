@@ -1,28 +1,46 @@
-# cloud-employeeslistapp
-
 # Application links in SCP CF
 
-https://p1943057769trial-trial-dev-employeeslist-ui.cfapps.eu10.hana.ondemand.com/index.html
+https://employeeslist-java.cfapps.eu10.hana.ondemand.com/employees
 
-https://p1943057769trial-trial-dev-employeeslist-java.cfapps.eu10.hana.ondemand.com/core/employees
+https://employeeslist-java.cfapps.eu10.hana.ondemand.com/create
 
-https://p1943057769trial-trial-dev-employeeslist-java.cfapps.eu10.hana.ondemand.com/core/test
+https://approuter-springboot.cfapps.eu10.hana.ondemand.com
 
-https://s0017254285trial-trial-dev-employeeslist-java.cfapps.eu10.hana.ondemand.com/employeeslist.svc/employees
+https://S0017254285trial.authentication.eu10.hana.ondemand.com/config?action=who
 
 # Blogs and tutorials about this scenario
+
 https://blogs.sap.com/2015/12/08/sap-hana-sps-11-new-developer-features-hdi/
 
 https://help.sap.com/doc/4505d0bdaf4948449b7f7379d24d0f0d/2.0.01/en-US/b3092cdd8e754a08a9e86006a53c4cca.html
 
 https://www.sap.com/developer/tutorials/xsa-hdi-module.html
 
+https://blogs.sap.com/2017/05/15/step-1-with-sap-s4hana-cloud-sdk-set-up/
+https://blogs.sap.com/2017/05/19/step-3-with-sap-s4hana-cloud-sdk-helloworld-on-scp-cloudfoundry/
+https://blogs.sap.com/2017/05/21/step-4-with-sap-s4hana-cloud-sdk-calling-an-odata-service/
+https://blogs.sap.com/2017/06/23/step-5-resilience-with-hystrix/
+https://blogs.sap.com/2017/12/20/deep-dive-6-with-sap-s4hana-cloud-sdk-extend-your-cloud-foundry-application-with-tenant-aware-persistency/
+** https://blogs.sap.com/2017/07/18/step-7-with-sap-s4hana-cloud-sdk-secure-your-application-on-sap-cloud-platform-cloudfoundry/
+https://blogs.sap.com/2017/09/11/step-10-with-sap-s4hana-cloud-sdk-virtual-data-model-for-odata/
+https://blogs.sap.com/2017/09/19/step-12-with-sap-s4hana-cloud-sdk-automated-testing/
+https://blogs.sap.com/2017/09/19/step-12-with-sap-s4hana-cloud-sdk-automated-testing/
+https://blogs.sap.com/2017/09/20/continuous-integration-and-delivery/
+https://blogs.sap.com/2017/12/07/step-19-with-s4hana-cloud-sdk-mocking-s4hana-calls-or-how-to-develop-an-s4hana-extension-without-an-s4hana-system/
+
+# NPM commands
+
 npm config set @sap:registry https://npm.sap.com
 
 # CF commands
+
+cf -help -a
+
 java -jar mta.jar -build-target=CF build
 
 cf deploy cloud-employeeslistapp-springboot.mtar
+
+cf create-service xsuaa application xsuaa-springboot -c xs-security.json
 
 cf allow-space-ssh SPACE_NAME
 
