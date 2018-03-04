@@ -116,7 +116,9 @@ cf service-key xsuaa-springboot xsuaa-springboot-java-sk
  "xsappname": "employeeslist-java!t2404"
 }
 
-
+https://docs.cloudfoundry.org/api/uaa/version/4.8.0/index.html#authorization-code-grant-2
+https://docs.cloudfoundry.org/concepts/architecture/uaa.html
+https://content.pivotal.io/blog/how-to-integrate-an-application-with-cloud-foundry-using-oauth2
 https://help.sap.com/viewer/70cdad3d4f2f4af08c795a7c44081827/1.0/en-US/544ca556b7934a16850764c05e53050c.html
 
 URL:
