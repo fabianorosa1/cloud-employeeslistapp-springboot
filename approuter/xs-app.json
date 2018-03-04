@@ -1,8 +1,10 @@
 {
-  "welcomeFile": "home",
-  "routes": [{
-    "source": "/",
-    "target": "/",
-    "destination": "app-destination"
-  }]
+	"welcomeFile": "home",
+	"routes": [
+		{
+			"source": "/",
+			"target": "/",
+			"destination": "backend-destination"
+		}
+	]
 }

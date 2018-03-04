@@ -15,7 +15,7 @@ import com.sap.hcp.cf.logging.servlet.filter.RequestLoggingFilter;
 
 @Configuration
 public class ConfigLogging {
-	
+
 	@Bean
 	public Filter requestLoggingFilter() {
 		return new RequestLoggingFilter();

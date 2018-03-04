@@ -18,9 +18,6 @@
 
 	<properties>
 		<eclipselink.version>2.7.1</eclipselink.version>
-		<!-- Using SAP internal verison for Olingo. This could be replaced with 
-			Olingo global version . -->
-		<olingo.v2.version>2.0.10</olingo.v2.version>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
@@ -119,18 +116,18 @@
 			<!-- <version>2.9.9</version> -->
 		</dependency>
 
-		<dependency>
+		<!--dependency>
 			<groupId>com.sap.db.jdbc</groupId>
 			<artifactId>ngdbc</artifactId>
 			<version>2.0.14</version>
-		</dependency>
+		</dependency-->
 
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 		</dependency>
 
-		<!-- Security -->
+		<!-- Security 		-->
 		<dependency>
 			<groupId>com.sap.xs2.security</groupId>
 			<artifactId>security-commons</artifactId>
@@ -182,6 +179,7 @@
 			<artifactId>java-container-security-api</artifactId>
 			<version>0.26.13</version>
 		</dependency>
+		
 	</dependencies>
 
 	<dependencyManagement>
@@ -193,6 +191,7 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			
 			<dependency>
 				<groupId>io.pivotal.spring.cloud</groupId>
 				<artifactId>spring-cloud-services-dependencies</artifactId>

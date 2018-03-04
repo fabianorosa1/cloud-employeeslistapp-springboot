@@ -27,7 +27,7 @@ public class EmployeeController {
 	@Autowired
 	private IEmployeeService employeeService;
 
-	@GetMapping("/")
+	@GetMapping("/home")
 	@ResponseBody
 	public String getHome() {
 		logger.info(">>> GET Home - SERVICE");		
