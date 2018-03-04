@@ -59,7 +59,7 @@ modules:
     - name: xsuaa-springboot
       properties:
          TENANT_HOST_PATTERN: 'approuter-springboot(.*).cfapps.eu10.hana.ondemand.com'
-         destinations: '[{"name":"app-destination", "url" :"https://employeeslist-java.cfapps.eu10.hana.ondemand.com", "forwardAuthToken": true}]'
+         destinations: '[{"name":"backend-destination", "url" :"https://employeeslist-java.cfapps.eu10.hana.ondemand.com", "forwardAuthToken": true}]'
          
 resources:
 # - name: hanadb-hdi-container

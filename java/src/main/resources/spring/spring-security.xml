@@ -23,9 +23,10 @@
 
         <!-- section to protect your endpoints -->
 
-        <!-- Example: Check a specific OAuth Scope (i.e., authorization) on a resource -->
+        <!-- Example: Check a specific OAuth Scope (i.e., authorization) on a resource 
         <sec:intercept-url pattern="/employees" access="#oauth2.hasScope('${xs.appname}.Display')" method="GET" />
-
+		-->
+		
         <!-- Example: Check only authentication on a resource -->
         <sec:intercept-url pattern="/**" access="isAuthenticated()" method="GET" />
         <sec:intercept-url pattern="/**" access="isAuthenticated()" method="PUT" />
