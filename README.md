@@ -17,15 +17,25 @@ https://help.sap.com/doc/4505d0bdaf4948449b7f7379d24d0f0d/2.0.01/en-US/b3092cdd8
 https://www.sap.com/developer/tutorials/xsa-hdi-module.html
 
 https://blogs.sap.com/2017/05/15/step-1-with-sap-s4hana-cloud-sdk-set-up/
+
 https://blogs.sap.com/2017/05/19/step-3-with-sap-s4hana-cloud-sdk-helloworld-on-scp-cloudfoundry/
+
 https://blogs.sap.com/2017/05/21/step-4-with-sap-s4hana-cloud-sdk-calling-an-odata-service/
+
 https://blogs.sap.com/2017/06/23/step-5-resilience-with-hystrix/
+
 https://blogs.sap.com/2017/12/20/deep-dive-6-with-sap-s4hana-cloud-sdk-extend-your-cloud-foundry-application-with-tenant-aware-persistency/
-** https://blogs.sap.com/2017/07/18/step-7-with-sap-s4hana-cloud-sdk-secure-your-application-on-sap-cloud-platform-cloudfoundry/
+
+https://blogs.sap.com/2017/07/18/step-7-with-sap-s4hana-cloud-sdk-secure-your-application-on-sap-cloud-platform-cloudfoundry/
+
 https://blogs.sap.com/2017/09/11/step-10-with-sap-s4hana-cloud-sdk-virtual-data-model-for-odata/
+
 https://blogs.sap.com/2017/09/19/step-12-with-sap-s4hana-cloud-sdk-automated-testing/
+
 https://blogs.sap.com/2017/09/19/step-12-with-sap-s4hana-cloud-sdk-automated-testing/
+
 https://blogs.sap.com/2017/09/20/continuous-integration-and-delivery/
+
 https://blogs.sap.com/2017/12/07/step-19-with-s4hana-cloud-sdk-mocking-s4hana-calls-or-how-to-develop-an-s4hana-extension-without-an-s4hana-system/
 
 # NPM commands
@@ -117,15 +127,21 @@ cf service-key xsuaa-springboot xsuaa-springboot-java-sk
 }
 
 https://docs.cloudfoundry.org/api/uaa/version/4.8.0/index.html#authorization-code-grant-2
+
 https://docs.cloudfoundry.org/concepts/architecture/uaa.html
+
 https://content.pivotal.io/blog/how-to-integrate-an-application-with-cloud-foundry-using-oauth2
+
 https://help.sap.com/viewer/70cdad3d4f2f4af08c795a7c44081827/1.0/en-US/544ca556b7934a16850764c05e53050c.html
 
 URL:
+
 https://s0017254285trial.authentication.eu10.hana.ondemand.com/oauth/token?grant_type=client_credentials
 
 Basic Authentication:
+
 User: (clientid)
+
 Password: (clientsecret)
 
 {
